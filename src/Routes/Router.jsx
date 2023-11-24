@@ -3,6 +3,8 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home";
 import DonationReq from "../Pages/DonationReq/DonationReq";
 import DashBoard from "../Pages/DashBoard/DashBoard";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +24,13 @@ const router = createBrowserRouter([
     {
       path:'/dashBoard',
       element: <DashBoard></DashBoard>
+    },
+    {
+      path:'/login',
+      element:<Login></Login>
+    },{
+      path:'/register',
+      element: <Register></Register>
     }
   ]);
 

@@ -91,7 +91,7 @@ const Navbar = () => {
             :   <></>
             
           }  */}
-           <Link to='/TravelNest/login' className="inline-flex items-center justify-center rounded-xl bg-[#ea062b] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#ea062b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" href="/login">Login</Link>
+           <Link to='/login' className="inline-flex items-center justify-center rounded-xl bg-[#ea062b] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#ea062b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" href="/login">Login</Link>
 
           </div>
 
@@ -147,7 +147,7 @@ const Navbar = () => {
             :  
             
           }  */}
-           <> <Link to='/TravelNest/login' className="inline-flex items-center justify-center rounded-xl bg-[#ea062b] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#ea062b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" href="/login">Login</Link></>
+           <> <Link to='/login' className="inline-flex items-center justify-center rounded-xl bg-[#ea062b] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#ea062b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" href="/login">Login</Link></>
         {/* Login button remains outside the animated.div */}
       </animated.div>
     </header>
