@@ -25,7 +25,7 @@ const Featured = () => {
         
         <div className="flex flex-wrap items-center mt-20 text-left text-center">
             <div className="w-full md:w-3/5 lg:w-1/2 px-4">
-                <img src="https://i.ibb.co/5F4V0zk/clay-banks-c-Ez-MOp5-Ft-V4-unsplash.jpg" alt="project members" className="inline-block rounded shadow-lg border border-merino-400"/>
+                <img src="https://i.ibb.co/kMqQpv8/hush-naidoo-jade-photography-yo01-Z-9-HQAw-unsplash.jpg" alt="project members" className="inline-block rounded shadow-lg border border-merino-400"/>
             </div>
             <div className="w-full md:w-2/5 lg:w-1/2 px-4 md:order-first text-center md:text-left lg:pr-12">
                 <h3 className="font-bold mt-8 text-xl md:mt-0 sm:text-2xl text-[#ea062b]">

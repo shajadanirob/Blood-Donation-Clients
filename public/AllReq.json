@@ -1,0 +1,21 @@
+[
+    {
+      "name": "Red Cross Blood Drive",
+      "location": "123 Main Street, Cityville",
+      "date": "2023-12-01",
+      "time": "10:00 AM - 4:00 PM"
+    },
+    {
+      "name": "Community Blood Center",
+      "location": "456 Oak Avenue, Townsville",
+      "date": "2023-12-05",
+      "time": "2:00 PM - 7:00 PM"
+    },
+    {
+      "name": "Hope Blood Bank",
+      "location": "789 Pine Road, Villagetown",
+      "date": "2023-12-10",
+      "time": "9:00 AM - 3:00 PM"
+    }
+  ]
+  

@@ -1,4 +1,5 @@
 import { FaRegAddressBook, FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Banner = () => {
     return (
         <div>
@@ -25,14 +26,14 @@ const Banner = () => {
         <div
           className="flex flex-col justify-center space-y-2 pb-16 pt-10 sm:flex-row sm:items-center sm:space-x-2 sm:space-y-0 lg:justify-start"
         >
-          <a
-            href="javascript:void(0)"
+          <Link
+           to='/register'
             className="inline-flex items-center justify-center space-x-2 rounded-lg border border-[#ef3d32] bg-[#ef3d32] px-7 py-3.5 font-semibold leading-6 text-white hover:border-[#ef3d32] hover:bg-[#ef3d32] hover:text-white focus:ring focus:ring-[#ef3d32] focus:ring-opacity-50 active:border-[#ef3d32]active:bg-blue-700 dark:focus:ring-[#ef3d32]dark:focus:ring-opacity-90"
           >
      <FaRegAddressBook />
 
             <span> Join as a donor</span>
-          </a>
+          </Link>
           <a
             href="javascript:void(0)"
             className="inline-flex items-center justify-center space-x-2 rounded-lg border border-gray-200 bg-white px-7 py-3.5 font-semibold leading-6 text-gray-800 hover:border-gray-300 hover:text-gray-900 hover:shadow-sm focus:ring focus:ring-gray-300 focus:ring-opacity-25 active:border-gray-200 active:shadow-none dark:border-gray-700 dark:bg-transparent dark:text-gray-300 dark:hover:border-gray-600 dark:hover:text-gray-200 dark:focus:ring-gray-600 dark:focus:ring-opacity-40 dark:active:border-gray-700"

@@ -2,9 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home";
 import DonationReq from "../Pages/DonationReq/DonationReq";
-import DashBoard from "../Pages/DashBoard/DashBoard";
+import DashBoard from "../Pages/DashBoardLayout/DashBoard";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import { getAllDonationReq, getSingleDonationReq } from "../Api/DonationReq";
+import SingleDonationReq from "../Pages/DonationReq/SingleDonationReq";
+import DashboardLayout from "../Pages/DashBoardLayout/DashBoard";
 
 const router = createBrowserRouter([
     {
@@ -17,13 +20,16 @@ const router = createBrowserRouter([
         },
         {
           path:'/donationReq',
-          element:<DonationReq></DonationReq>
+          element:<DonationReq></DonationReq>,
+          loader: () => getAllDonationReq()
+        },
+        {
+          path:'/donationReq/:id',
+          element: <SingleDonationReq/>,
+          loader: ({params}) => getSingleDonationReq(params.id)
+
         },
       ]
-    },
-    {
-      path:'/dashBoard',
-      element: <DashBoard></DashBoard>
     },
     {
       path:'/login',
@@ -31,7 +37,14 @@ const router = createBrowserRouter([
     },{
       path:'/register',
       element: <Register></Register>
-    }
+    },
+    {
+      path:'/dashBoard',
+      element: <DashboardLayout></DashboardLayout>,
+      children: [{
+        path:'/dashBoard/sidebar'
+      }]
+    },
   ]);
 
   export default router

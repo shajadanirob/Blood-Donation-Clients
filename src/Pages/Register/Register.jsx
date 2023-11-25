@@ -1,6 +1,11 @@
+/* eslint-disable no-unused-vars */
 import { Container } from "postcss";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/UseAuth";
+import toast from "react-hot-toast";
+import { getToken, savedUser } from "../../Api/Auth";
+import { imageUpload } from "../../Api/Utilite";
 
 const Register = () => {
     const [Districts,setDistrict] = useState([])
@@ -10,11 +15,94 @@ const Register = () => {
         .then(res => res.json())
         .then(data => setDistrict(data))
     },[])
+   
     useEffect(() =>{
         fetch('/Upozila.json')
         .then(res => res.json())
         .then(data => setUpeZila(data))
     },[])
+
+// firebase 
+    const {createUser,signInWithGoogle,updateUserProfile,loading,} = useAuth();
+    const navigate = useNavigate()
+
+
+  // from submit handler
+  const handleSubmit = async event =>{
+    event.preventDefault();
+    const from = event.target;
+    const name = from.name.value;
+    const email = from.email.value;
+    const password = from.password.value;
+    const image = from.image.files[0];
+    const bloodGroup = from.blood.value;
+    const district = from.district.value;
+    const upajila = from.upazila.value;
+
+    try{
+      // 1.upload image
+      const imageData = await imageUpload(image)
+
+      const AllData = {
+        name,email,imageData,bloodGroup,district,upajila
+      }
+      console.log(AllData.upajila)
+
+      //2. user registration
+      const result = await createUser(email,password)
+      console.log(result)
+
+      //3. save user and profile photo
+      await updateUserProfile(name,imageData?.data?.display_url,bloodGroup,district,upajila)
+
+      //4. save user data in the database
+       const dbResponse =await savedUser(AllData)
+       console.log(dbResponse)
+
+      //5. get token
+      await getToken(result?.user?.email)
+      toast.success('signUp successFully')
+      navigate('/')
+
+    }
+    catch(err){
+      console.log(err)
+      toast.error(err.message)
+    }
+   
+  }
+  // handleGoogle sign in
+  const handleGoogleSignIn = async () =>{
+    try{
+     
+     //1. user registration with google
+      const result = await signInWithGoogle()
+      console.log(result)
+
+
+      //2. save user data in the database
+       const dbResponse =await savedUser(result?.user)
+       console.log(dbResponse)
+
+      //3. get token
+      await getToken(result?.user?.email)
+      toast.success('signUp successFully')
+      navigate('/')
+
+    }
+    catch(err){
+      console.log(err)
+      toast.error(err.message)
+    }
+  }
+
+
+
+
+
+
+
+
     return (
         <div>
             
@@ -32,6 +120,7 @@ const Register = () => {
                 <div className="w-full flex-1 mt-8">
                     <div className="flex flex-col items-center">
                         <button
+                        onClick={handleGoogleSignIn}
                             className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
                             <div className="bg-white p-2 rounded-full">
                                 <svg className="w-4" viewBox="0 0 533.5 544.3">
@@ -62,7 +151,7 @@ const Register = () => {
                         </div>
                     </div>
 
-                    <div className="mx-auto max-w-xs">
+                    <form onSubmit={handleSubmit} className="mx-auto max-w-xs">
                         <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                             type="text" name="name" required placeholder="name" />
@@ -75,10 +164,7 @@ const Register = () => {
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                             type="file" name="image" required placeholder="image" />
 
-                        <input
-                            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                            type="password" placeholder="Password" />
-
+                   
 
                         <select
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5" name="blood" required>
@@ -94,7 +180,7 @@ const Register = () => {
                            </select>  
 
                         <select
-                            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5" name="blood" required>
+                            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5" name="district" required>
                                   <option disabled selected value="">District</option>
                                   {
                                     Districts.map(dist =>  <option key={dist.id} value={dist.name}>{dist.name}</option>)
@@ -107,7 +193,7 @@ const Register = () => {
 
 
                         <select
-                            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5" name="blood" required>
+                            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5" name="upazila" required>
                                   <option disabled selected value="">Upazila</option>
                                   {
                                     upeZila.map(upo =>  <option value={upo.name} key={upo.id}>{upo.name}</option>)
@@ -118,6 +204,7 @@ const Register = () => {
 
                         <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                            name="password"
                             type="password" placeholder="Password" />
 
 
@@ -141,7 +228,7 @@ const Register = () => {
                            <Link to='/login' className='text-[#ea062b]'>Login Now</Link>
                           
                         </p>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

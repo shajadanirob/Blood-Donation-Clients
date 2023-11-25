@@ -1,8 +1,70 @@
-import React from 'react';
+
 import Container from '../../Shared/Container';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { getToken, savedUser } from '../../Api/Auth';
+import useAuth from '../../Hooks/UseAuth';
+import {TbFidgetSpinner} from 'react-icons/tb'
 
 const Login = () => {
+    const {signIn,signInWithGoogle,loading,} = useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location?.state?.from?.pathname || '/'
+  // from submit handler
+  const handleSubmit = async event =>{
+    event.preventDefault();
+    const from = event.target;
+    const email = from.email.value;
+    const password = from.password.value;
+    try{
+     
+      //1. user registration
+      const result = await signIn(email,password)
+      console.log(result)
+
+
+      //5. get token
+      await getToken(result?.user?.email)
+      toast.success('logIn successFully')
+    //   navigate(from,{replace:true})
+      navigate('/')
+
+    }
+    catch(err){
+      console.log(err)
+      toast.error(err.message)
+    }
+   
+  }
+  // handleGoogle sign in
+  const handleGoogleSignIn = async () =>{
+    try{
+     
+     //1. user registration with google
+      const result = await signInWithGoogle()
+      console.log(result)
+
+        //2. save user data in the database
+        const dbResponse =await savedUser(result?.user)
+        console.log(dbResponse)
+ 
+
+      //3. get token
+      await getToken(result?.user?.email)
+      toast.success('logIn successFully')
+      navigate(from,{replace:true})
+
+    }
+    catch(err){
+      console.log(err)
+      toast.error(err.message)
+    }
+  }
+
+
+
+
     return (
         <Container>
             {/* <div className="flex justify-center">
@@ -59,6 +121,7 @@ const Login = () => {
                 <div className="w-full flex-1 mt-8">
                     <div className="flex flex-col items-center">
                         <button
+                        onClick={handleGoogleSignIn}
                             className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
                             <div className="bg-white p-2 rounded-full">
                                 <svg className="w-4" viewBox="0 0 533.5 544.3">
@@ -89,13 +152,15 @@ const Login = () => {
                         </div>
                     </div>
 
-                    <div className="mx-auto max-w-xs">
+                    <form onSubmit={handleSubmit} className="mx-auto max-w-xs">
                         <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                            type="email" placeholder="Email" />
+                            type="email" name='email' placeholder="Email" />
                         <input
                             className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                            type="password" placeholder="Password" />
+                            type="password" 
+                            name='password'
+                            placeholder="Password" />
                         <button
                             className="mt-5 tracking-wide font-semibold bg-[#ea062b] text-gray-100 w-full py-4 rounded-lg hover:bg-[#ea062b] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                             <svg className="w-6 h-6 -ml-2" fill="none" stroke="currentColor" stroke-width="2"
@@ -105,7 +170,9 @@ const Login = () => {
                                 <path d="M20 8v6M23 11h-6" />
                             </svg>
                             <span className="ml-3">
-                                Sign Up
+                            {
+                loading? <TbFidgetSpinner className='animate-spin m-auto'/> : 'Signup'
+              }
                             </span>
                         </button>
                         <p className="mt-6 text-xl text-gray-600 text-center">
@@ -113,7 +180,7 @@ const Login = () => {
                            <Link to='/register' className='text-[#ea062b]'>SignUp Now</Link>
                           
                         </p>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
