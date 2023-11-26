@@ -23,7 +23,7 @@ const SingleDonationReq = () => {
     
 
         <h1 className="mx-auto text-xl lg:text-3xl ">
-          {singleDonation.request_message}
+          {singleDonation.Description}
         </h1>
     </div>
 </div>
@@ -57,7 +57,7 @@ const SingleDonationReq = () => {
                                     Address
                                 </p>
                                 <p class="text-neutral-500 ">
-                                    {singleDonation.full_address}
+                                    {singleDonation.fullAddress}
                                 </p>
                             </div>
                         </div>
@@ -74,7 +74,7 @@ const SingleDonationReq = () => {
                                    Location
                                 </p>
                                 <p class="text-neutral-500 ">
-                                    {singleDonation.location}
+                                    {singleDonation.recipientLocation}
                                 </p>
                                
                             </div>
@@ -91,10 +91,10 @@ const SingleDonationReq = () => {
                             <div class="ml-6 grow">
                                 <p class="mb-2 font-bold ">Date and time</p>
                                 <p class="text-neutral-500 ">
-                                    {singleDonation.date}
+                                    {singleDonation.donationDate}
                                 </p>
                                 <p class="text-neutral-500 ">
-                                    {singleDonation.time}
+                                    {singleDonation.donationTime}
                                 </p>
                             </div>
                         </div>
@@ -113,7 +113,7 @@ const SingleDonationReq = () => {
                                     Hospital
                                 </p>
                                 <p class="text-neutral-500 ">
-                                    {singleDonation.hospital_name}
+                                    {singleDonation.hospitalName}
                                 </p>
                                 
                             </div>

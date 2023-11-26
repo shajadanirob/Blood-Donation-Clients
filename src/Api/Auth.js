@@ -5,7 +5,7 @@ import axiosSecure from "./Index"
 export const savedUser = async AllData =>{
     const currentUser = {
         email : AllData.email,
-        role : 'donor',
+        role : 'Volunteer',
         status:'active',
         name: AllData.name,
         bloodGroup: AllData.bloodGroup,
@@ -31,4 +31,10 @@ export const getToken = async email =>{
 export const ClearCookie = async () =>{
     const {data} = await axiosSecure.get(`/logout`)
     return data
+}
+
+// get user role 
+export const getRole =async email =>{
+    const {data} = await axiosSecure(`/users/${email}`)
+    return data.role
 }

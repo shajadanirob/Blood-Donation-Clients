@@ -28,6 +28,7 @@ const DonationReq = () => {
         <th>date</th>
         <th>time</th>
         <th>view Details</th>
+       
       </tr>
     </thead>
     <tbody>
@@ -35,10 +36,10 @@ const DonationReq = () => {
     {
         donations.map((donation,index) => <tr key={donation._id}>
             <th>{index + 1}</th>
-            <td>{donation.name}</td>
-            <td>{donation.location}</td>
-            <td>{donation.date}</td>
-            <td>{donation.time}</td>
+            <td>{donation.requesterName}</td>
+            <td>{donation.recipientLocation}</td>
+            <td>{donation.donationDate}</td>
+            <td>{donation.donationTime}</td>
             <td>
                 <Link to={`${donation._id}`}>
                 <button  className="btn btn-sm">view details</button>

@@ -6,12 +6,23 @@ import MenuItem from './MenuItem'
 import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
 import { AiOutlineBars } from 'react-icons/ai'
-import { BsGraphUp } from 'react-icons/bs'
+
 import Tooglebtn from './Tooglebtn'
+
+
+
+import { Link } from 'react-router-dom'
+import useRole from '../../Hooks/UseRole'
+import AdminMenu from '../AdminMenu'
+import DonnorMenu from '../DonnorMenu'
+import Volunteer from '../Volunteer'
+
 
 const Sidebar = () => {
   const [toggle, setToggle] = useState(false)
   const [isActive, setActive] = useState(false)
+  const {role} = useRole()
+  console.log('roleeeee' ,role)
 
   //   For guest/host menu item toggle button
   const toggleHandler = event => {
@@ -46,28 +57,34 @@ const Sidebar = () => {
       >
         <div>
           <div>
-            <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
+            <Link to='/' className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
             <img className="w-[20%] md:w-[25%]" src="https://i.ibb.co/2KbSFkF/download-removebg-preview.png" alt="Website Logo" />
-            </div>
+            </Link>
           </div>
 
           {/* Nav Items */}
           <div className='flex flex-col justify-between flex-1 mt-6'>
             {/* If a user is host */}
-            <Tooglebtn toggleHandler={toggleHandler}></Tooglebtn>
+           
             <nav>
-              <MenuItem
-                icon={BsGraphUp}
-                label='Statistics'
-                address='/dashboard'
-              />
+            <MenuItem
+            icon={FcSettings}
+            label='Profile'
+            address='/dashBoard'
+          />
+           {/* admin dashboard */}
+
+            {role ==='admin' && <AdminMenu/>}
+
+            {/* donor dashboard */}
+            {role ==='donor' && <DonnorMenu/>}
+            {/* volntiar dashBaord */}
+            { role === 'Volunteer' && <Volunteer/>}
 
               {/* Menu Items */}
-              <MenuItem
-                icon={BsGraphUp}
-                label='create Donation Request'
-                address='/dashboard'
-              />
+
+            
+            
             </nav>
           </div>
         </div>
@@ -75,12 +92,8 @@ const Sidebar = () => {
         <div>
           <hr />
 
-          <MenuItem
-            icon={FcSettings}
-            label='Profile'
-            address='/dashboard/profile'
-          />
-          <button className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'>
+       
+          <button className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-7Volunteer00 transition-colors duration-300 transform'>
             <GrLogout className='w-5 h-5' />
 
             <span className='mx-4 font-medium'>Logout</span>

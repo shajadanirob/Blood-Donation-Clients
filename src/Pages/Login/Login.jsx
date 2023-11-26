@@ -28,7 +28,7 @@ const Login = () => {
       await getToken(result?.user?.email)
       toast.success('logIn successFully')
     //   navigate(from,{replace:true})
-      navigate('/')
+    navigate('/')
 
     }
     catch(err){
