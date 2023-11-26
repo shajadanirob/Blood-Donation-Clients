@@ -5,7 +5,7 @@ import axiosSecure from "./Index"
 export const savedUser = async AllData =>{
     const currentUser = {
         email : AllData.email,
-        role : 'Volunteer',
+        role : 'donor',
         status:'active',
         name: AllData.name,
         bloodGroup: AllData.bloodGroup,

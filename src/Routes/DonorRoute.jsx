@@ -4,10 +4,10 @@ import useRole from "../Hooks/UseRole";
 
 
 const DonorRoute = ({children}) => {
-    const{role,loading} = useRole()
+    const{role,isLoading} = useRole()
     console.log(role)
 
-    if(loading) return <p>loading</p>
+    if(isLoading) return <p>loading</p>
     if(role === 'donor') return children
 
 
