@@ -7,6 +7,7 @@ import { CiHospital1 } from "react-icons/ci";
 
 const SingleDonationReq = () => {
     const singleDonation = useLoaderData()
+    console.log(singleDonation)
     return (
         <div className="my-20 mx-auto min-h-[calc(100vh-250px)]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -127,7 +128,8 @@ const SingleDonationReq = () => {
 
         <div className="flex justify-center items-center">
             <button className="'btn  space-x-2 rounded-lg border border-[#ef3d32] bg-[#ef3d32] px-7 py-3.5 font-semibold leading-6 text-white hover:border-[#ef3d32] hover:bg-[#ef3d32] hover:text-white focus:ring focus:ring-[#ef3d32] focus:ring-opacity-50 active:border-[#ef3d32]active:bg-blue-700 dark:focus:ring-[#ef3d32]dark:focus:ring-opacity-90">Donet</button>
-        </div>
+        </div> 
+        
     </section>
 </div>
         </div>
