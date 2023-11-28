@@ -9,6 +9,11 @@ const DonnorMenu = () => {
               <MenuItem
                 icon={AiOutlinePullRequest }
                 label='My Donation Request'
+                address='myDonationReq'
+              />
+              <MenuItem
+                icon={AiOutlinePullRequest }
+                label='Donet my Donation Request'
                 address='donationReq'
               />
               <MenuItem
@@ -16,11 +21,7 @@ const DonnorMenu = () => {
                 label='create Donation Request'
                 address='createDonation'
               />
-              <MenuItem
-                icon={MdManageAccounts  }
-                label='manage Donation Request'
-                address='manage'
-              />
+              
         </div>
     );
 };

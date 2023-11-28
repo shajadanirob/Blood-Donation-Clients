@@ -7,7 +7,7 @@ export const getAllDonationReq = async () => {
 
 // fetch all donation req for donor
 export const getDonorDonationReq = async(email) =>{
-    const {data} = await axiosSecure.get(`dashboard/donationReq/${email}`)
+    const {data} = await axiosSecure.get(`/donationReq/${email}`)
     return data
 }
 

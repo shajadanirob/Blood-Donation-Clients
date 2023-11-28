@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import useAuth from "../../../Hooks/UseAuth";
-import { getDonorDonationReq } from "../../../Api/DonationReq";
 import Container from "../../../Shared/Container";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -14,6 +13,7 @@ const MyDonotionReq = () => {
       axios.get(`http://localhost:5000/donets/${user.email}`)
       .then(res => setDonations(res.data))
     },[user])
+
     return (
         <div>
           <Helmet>

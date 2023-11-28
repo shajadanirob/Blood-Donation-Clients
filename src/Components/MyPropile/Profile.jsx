@@ -13,12 +13,17 @@ import axios from 'axios'
 const Profile = () => {
   const {role } = useRole()
   const{user} = useAuth()
+  console.log(user)
   const [Donations,setDonations] = useState([])
   useEffect(() =>{
     axios.get(`http://localhost:5000/donets/${user.email}`)
     .then(res => setDonations(res.data))
   },[user])
-
+   const [users ,setUsers] = useState([])
+   useEffect(() =>{
+    axios.get(`http://localhost:5000/users/${user.email}`)
+    .then(res => setUsers(res.data))
+   },[user])
   console.log(user)
   return (
     <div>
@@ -46,7 +51,7 @@ const Profile = () => {
             {role}
           </p>
           <p className='mt-2 text-xl font-medium text-gray-800 '>
-            {/* User Id: {user.uid} */}
+            Blood Group: {users.bloodGroup}
           </p>
           <div className='w-full p-2 mt-4 rounded-lg'>
             <div className='flex flex-wrap items-center justify-between text-sm text-gray-600 '>
@@ -60,14 +65,14 @@ const Profile = () => {
                 Email
                 <span className='font-bold text-black '>{user.email}</span>
               </p>
+              <p className='flex flex-col'>
+                Address
+                <span className='font-bold text-black '>{users.district} , {users.upeZila}</span>
+              </p>
 
               <div>
-                <button className='bg-[#F43F5E] px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053] block mb-1'>
-                  Update Profile
-                </button>
-                <button className='bg-[#F43F5E] px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053]'>
-                  Change Password
-                </button>
+              
+              
               </div>
             </div>
           </div>
@@ -111,7 +116,7 @@ const Profile = () => {
             <td>{donation.donationTime}</td>
             <td>{donation.donetorName}</td>
             <td>{donation.donetorEmail}</td>
-            <td>{donation.status.status}</td>
+            <td>{donation.status}</td>
             
            
           </tr>)

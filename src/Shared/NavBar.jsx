@@ -42,6 +42,10 @@ const Navbar = () => {
     isPending ? "pending" : isActive ? "underline text-[#ea062b]" : ""
   }>DashBoard</NavLink></ol>
     
+    <ol><NavLink to='/blogs'className={({ isActive, isPending }) =>
+    isPending ? "pending" : isActive ? "underline text-[#ea062b]" : ""
+  }>Blogs</NavLink></ol>
+    
    
 </>
 

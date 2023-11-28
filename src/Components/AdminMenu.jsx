@@ -27,6 +27,11 @@ const AdminMenu = () => {
                 label='Add Blog'
                 address='addBlog'
               />
+               <MenuItem
+                icon={FaBlogger   }
+                label='manage Blog'
+                address='allBlog'
+              />
         </div>
     );
 };

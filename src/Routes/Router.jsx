@@ -15,7 +15,6 @@ import Statics from "../Components/DashBoard/Admin/Statics";
 import Profile from "../Components/MyPropile/Profile";
 import AllDonation from "../Components/DashBoard/Admin/AllDonation";
 import ManageDonet from "../Components/DashBoard/Donor/manageDonet";
-import Blog from "../Components/DashBoard/Admin/Blog";
 import PraivetRoute from "./PraivetRoutes";
 import DonorRoute from "./DonorRoute";
 import AdminRote from "./AdminRote";
@@ -24,6 +23,12 @@ import SingleStatus from "../Components/SIngleStatusUpdate/SingleStatus";
 import SingleDonationModal from "../Components/SingleDonationModal/SingleDonationModal";
 import UpdatedDonet from "../Components/UpdatedDonet/UpdatedDonet";
 import UpdatedDonetStatus from "../Components/UpdatedDonet/UpdatedDonetStatus";
+import Blog from "../Components/DashBoard/Admin/UploadBlog";
+import HomeBlogs from "../Pages/Blogs/HomeBlogs";
+import BLogDetails from "../Pages/Blogs/BLogDetails";
+import DonationMyRequest from "../Components/DashBoard/Donor/DonationMyRequest";
+import AllBlog from "../Components/DashBoard/Admin/AllBlog";
+import UpdateBlogs from "../Pages/Blogs/UpdateBlogs";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +52,15 @@ const router = createBrowserRouter([
           loader: ({params}) => getSingleDonationReq(params.id)
 
         },
+        {
+          path:'/blogs',
+          element: <HomeBlogs/>
+        },
+        {
+          path:'/blogs/:id',
+          element: <BLogDetails/>,
+          loader:({params}) => fetch(`http://localhost:5000/blogs/${params.id}`)
+        }
       ]
     },
     {
@@ -63,7 +77,7 @@ const router = createBrowserRouter([
 
     },
     {
-      path:'/donationReq/:id',
+      path:'/donationReqe/:id',
       element: <PraivetRoute>
         <SingleDonationModal/>
       </PraivetRoute>,
@@ -87,6 +101,16 @@ const router = createBrowserRouter([
 
     },
     {
+      path:'/blogs/updated/:id',
+      element: <PraivetRoute>
+       <AdminRote>
+       <UpdateBlogs/>
+       </AdminRote>
+      </PraivetRoute>,
+      loader: ({params}) => fetch(`http://localhost:5000/blogs/updated/${params.id}`)
+
+    },
+    {
       path:'/dashBoard',
       element: <DashboardLayout></DashboardLayout>,
       children: [
@@ -97,6 +121,15 @@ const router = createBrowserRouter([
           </PraivetRoute>
 
         },
+      {
+        path:'myDonationReq',
+        element:
+          <PraivetRoute>
+            <DonorRoute>
+         <DonationMyRequest/>
+          </DonorRoute>
+          </PraivetRoute>
+      },
       {
         path:'donationReq',
         element:
@@ -158,6 +191,17 @@ const router = createBrowserRouter([
            <PraivetRoute>
             <AdminVolntiRoute>
            <Blog/>
+          </AdminVolntiRoute>
+           </PraivetRoute>
+      
+
+      },
+      {
+        path:'allBlog',
+        element:
+           <PraivetRoute>
+            <AdminVolntiRoute>
+          <AllBlog/>
           </AdminVolntiRoute>
            </PraivetRoute>
       
