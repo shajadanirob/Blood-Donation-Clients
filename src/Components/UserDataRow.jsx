@@ -1,10 +1,21 @@
 import { useState } from "react"
 import UpdateUserModal from "./UpdateUserModal/UpdateUserModal"
-
-const UserDataRow = ({ user }) => {
-    const [isOpen,setIsOpen] = useState(true)
-    const modalHandler = async (selected) =>{
-     console.log(selected)
+import { updateRole } from "../Api/Auth"
+import toast from "react-hot-toast"
+import { Link } from "react-router-dom"
+const UserDataRow = ({ user ,refetch}) => {
+    const [isOpen,setIsOpen] = useState(false)
+    const modalHandler = async role =>{
+     try{
+       const data = await updateRole({email: user?.email,role})
+       console.log(data)
+       refetch()
+       toast.success('user role update')
+     }
+     catch(error){
+        console.log(error)
+        toast.error(error.message)
+     }
     }
     return (
       <tr>
@@ -55,8 +66,13 @@ const UserDataRow = ({ user }) => {
             <span className='relative'>Update Role</span>
           </span>
           {/* Modal */}
+          <UpdateUserModal isOpen={isOpen} setIsOpen={setIsOpen}
+          modalHandler={modalHandler} user={user}
+          />
         </td>
         <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+          {/* to={`/user/${user.email}`} */}
+          <Link >
           <span className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
             <span
               aria-hidden='true'
@@ -64,11 +80,12 @@ const UserDataRow = ({ user }) => {
             ></span>
             <span className='relative'>Update Status</span>
           </span>
+          </Link>
           {/* Modal */}
-          <UpdateUserModal isOpen={isOpen} setIsOpen={setIsOpen}
-          modalHandler={modalHandler} user={user}
-          />
+    
         </td>
+                 
+
       </tr>
     )
   }

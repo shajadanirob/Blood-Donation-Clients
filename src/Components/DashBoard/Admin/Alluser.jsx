@@ -133,7 +133,7 @@ const Alluser = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody>{users.map(user => <UserDataRow key={user._id} user={user}/>)}</tbody>
+                <tbody>{users.map(user => <UserDataRow key={user._id} user={user} refetch={refetch}/>)}</tbody>
               </table>
             </div>
           </div>

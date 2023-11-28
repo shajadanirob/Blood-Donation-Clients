@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import { Container } from "postcss";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/UseAuth";
@@ -8,8 +7,10 @@ import { getToken, savedUser } from "../../Api/Auth";
 import { imageUpload } from "../../Api/Utilite";
 
 const Register = () => {
-    const [Districts,setDistrict] = useState([])
-    const [upeZila,setUpeZila] = useState([])
+    const [Districts,setDistrict] = useState([]);
+    const [upeZila,setUpeZila] = useState([]);
+    const [passwordMatch, setPasswordMatch] = useState(true); // Added state for password match
+    const [confirmPassword, setConfirmPassword] = useState(""); // Added state for confirm password
     useEffect(() =>{
         fetch('/Distric.json')
         .then(res => res.json())
@@ -22,79 +23,88 @@ const Register = () => {
         .then(data => setUpeZila(data))
     },[])
 
-// firebase 
-    const {createUser,signInWithGoogle,updateUserProfile,loading,} = useAuth();
-    const navigate = useNavigate()
+    // firebase 
+    const {createUser, signInWithGoogle, updateUserProfile, loading} = useAuth();
+    const navigate = useNavigate();
 
+    // from submit handler
+    const handleSubmit = async event => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const image = form.image.files[0];
+        const bloodGroup = form.blood.value;
+        const district = form.district.value;
+        const upajila = form.upazila.value;
 
-  // from submit handler
-  const handleSubmit = async event =>{
-    event.preventDefault();
-    const from = event.target;
-    const name = from.name.value;
-    const email = from.email.value;
-    const password = from.password.value;
-    const image = from.image.files[0];
-    const bloodGroup = from.blood.value;
-    const district = from.district.value;
-    const upajila = from.upazila.value;
+        try {
+            // 1. upload image
+            const imageData = await imageUpload(image);
 
-    try{
-      // 1.upload image
-      const imageData = await imageUpload(image)
+            const allData = {
+                name,
+                email,
+                imageData,
+                bloodGroup,
+                district,
+                upajila
+            };
 
-      const AllData = {
-        name,email,imageData,bloodGroup,district,upajila
-      }
-      console.log(AllData.upajila)
+            // Check if passwords match
+            if (password === confirmPassword) {
+                setPasswordMatch(true);
 
-      //2. user registration
-      const result = await createUser(email,password)
-      console.log(result)
+                // 2. user registration
+                const result = await createUser(email, password);
 
-      //3. save user and profile photo
-      await updateUserProfile(name,imageData?.data?.display_url,bloodGroup,district,upajila)
+                // 3. save user and profile photo
+                await updateUserProfile(
+                    name,
+                    imageData?.data?.display_url,
+                    bloodGroup,
+                    district,
+                    upajila
+                );
 
-      //4. save user data in the database
-       const dbResponse =await savedUser(AllData)
-       console.log(dbResponse)
+                // 4. save user data in the database
+                const dbResponse = await savedUser(allData);
 
-      //5. get token
-      await getToken(result?.user?.email)
-      toast.success('signUp successFully')
-      navigate('/')
+                // 5. get token
+                await getToken(result?.user?.email);
 
-    }
-    catch(err){
-      console.log(err)
-      toast.error(err.message)
-    }
-   
-  }
-  // handleGoogle sign in
-  const handleGoogleSignIn = async () =>{
-    try{
-     
-     //1. user registration with google
-      const result = await signInWithGoogle()
-      console.log(result)
+                toast.success('Sign up successfully');
+                navigate('/');
+            } else {
+                setPasswordMatch(false);
+                toast.error("Passwords don't match");
+            }
+        } catch (err) {
+            console.error(err);
+            toast.error(err.message);
+        }
+    };
 
+    // handleGoogle sign in
+    const handleGoogleSignIn = async () => {
+        try {
+            // 1. user registration with google
+            const result = await signInWithGoogle();
 
-      //2. save user data in the database
-       const dbResponse =await savedUser(result?.user)
-       console.log(dbResponse)
+            // 2. save user data in the database
+            const dbResponse = await savedUser(result?.user);
 
-      //3. get token
-      await getToken(result?.user?.email)
-      toast.success('signUp successFully')
-      navigate('/')
+            // 3. get token
+            await getToken(result?.user?.email);
 
-    }
-    catch(err){
-      console.log(err)
-      toast.error(err.message)
-    }
-  }
+            toast.success('Sign up successfully');
+            navigate('/');
+        } catch (err) {
+            console.error(err);
+            toast.error(err.message);
+        }
+    };
 
 
 
@@ -202,17 +212,32 @@ const Register = () => {
                
                            </select>     
 
-                        <input
-                            className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                            name="password"
-                            type="password" placeholder="Password" />
+                
 
-
-
+                           <input
+                className={`w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 ${
+                    !passwordMatch ? 'border-red-500' : ''
+                }`}
+                name="password"
+                type="password"
+                placeholder="Password"
+            />
+            <input
+                className={`w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 ${
+                    !passwordMatch ? 'border-red-500' : ''
+                }`}
+                name="confirmPassword"
+                type="password"
+                placeholder="Confirm Password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+            />
 
 
                         <button
-                            className="mt-5 tracking-wide font-semibold bg-[#ea062b] text-gray-100 w-full py-4 rounded-lg hover:bg-[#ea062b] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                             className={`mt-5 tracking-wide font-semibold bg-[#ea062b] text-gray-100 w-full py-4 rounded-lg hover:bg-[#ea062b] transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none ${
+                                !passwordMatch ? 'cursor-not-allowed opacity-50' : ''
+                            }`}
+                            disabled={!passwordMatch}>
                             <svg className="w-6 h-6 -ml-2" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />

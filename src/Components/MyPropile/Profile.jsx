@@ -3,15 +3,26 @@
 import { Helmet } from 'react-helmet-async'
 import useAuth from '../../Hooks/UseAuth'
 import useRole from '../../Hooks/UseRole'
+import { getDonorDonationReq } from '../../Api/DonationReq'
+import { useEffect, useState } from 'react'
+import Container from '../../Shared/Container'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 
 const Profile = () => {
-  const { user } = useAuth()
   const {role } = useRole()
+  const{user} = useAuth()
+  const [Donations,setDonations] = useState([])
+  useEffect(() =>{
+    axios.get(`http://localhost:5000/donets/${user.email}`)
+    .then(res => setDonations(res.data))
+  },[user])
 
   console.log(user)
   return (
-    <div className='flex justify-center items-center h-screen'>
+    <div>
+      <div className='flex justify-center items-center'>
       <Helmet>
         <title>Profile</title>
       </Helmet>
@@ -62,6 +73,59 @@ const Profile = () => {
           </div>
         </div>
       </div>
+    </div>
+    
+    <Container>
+      <h1 className='text-3xl text-center'>My donation request</h1>
+   {
+    Donations.length === 0 ? 
+    <p className='text-3xl text-gray-500 text-center my-10'>You have no donation</p>
+
+    :
+
+    <>
+  <div className="overflow-x-auto">
+  <table className="table table-zebra">
+    {/* head */}
+    <thead>
+      <tr>
+        <th>total</th>
+        <th>recipient Name</th>
+        <th>location</th>
+        <th>date</th>
+        <th>time</th>
+        <th>Donor name</th>
+        <th>Donor email</th>
+        <th>Donation status</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      {/* row 1 */}
+    {
+        Donations.slice(0,3).map((donation,index) => <tr key={donation._id}>
+            <th>{index + 1}</th>
+            <td>{donation.recipientName}</td>
+            <td>{donation.recipientLocation}</td>
+            <td>{donation.date}</td>
+            <td>{donation.donationTime}</td>
+            <td>{donation.donetorName}</td>
+            <td>{donation.donetorEmail}</td>
+            <td>{donation.status.status}</td>
+            
+           
+          </tr>)
+    }
+      
+     
+    </tbody>
+  </table>
+</div>
+    </>
+   }
+
+    </Container>
+    <Link to='/dashboard/donationReq' className='flex items-center justify-center'><button className='btn'>viewALL</button></Link>
     </div>
   )
 }

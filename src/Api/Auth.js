@@ -15,7 +15,7 @@ export const savedUser = async AllData =>{
         
         
     }
-    const {data} = await axiosSecure.put(`/users/${AllData?.email}`,currentUser)
+    const {data} = await axiosSecure.patch(`/users/${AllData?.email}`,currentUser)
     return data
 }
 
@@ -43,3 +43,15 @@ export const getAllUser =async()  =>{
     const {data} = await axiosSecure.get(`/users`)
     return data
 }
+// update role
+export const updateRole = async ({email,role,status}) =>{
+    const currentUser = {
+      email,role,status
+      
+        
+        
+    }
+    const {data} = await axiosSecure.put(`/users/update/${email}`,currentUser)
+    return data
+}
+// update status

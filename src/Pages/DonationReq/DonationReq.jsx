@@ -8,11 +8,7 @@ import { Link, useLoaderData } from "react-router-dom";
 
 const DonationReq = () => {
     const donations = useLoaderData()
-    // const [donations,setDonaTions] =useState([])
-    // useEffect(() =>{
-    //   axiosSecure.get('/donationReq')
-    //   .then(res => setDonaTions(res.data))
-    // },[])
+   
     
     return (
         <div className="my-20">

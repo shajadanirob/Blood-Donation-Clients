@@ -7,14 +7,14 @@ export const getAllDonationReq = async () => {
 
 // fetch all donation req for donor
 export const getDonorDonationReq = async(email) =>{
-    const {data} = await axiosSecure.get(`/donationReq/${email}`)
+    const {data} = await axiosSecure.get(`dashboard/donationReq/${email}`)
     return data
 }
 
 
 // get single donation req
 export const getSingleDonationReq = async id => {
-    const {data} = await axiosSecure.get(`/donationReq/${id}`)
+    const {data} = await axiosSecure.get(`/donationReqe/${id}`)
     return data
 }
 // save a data in database

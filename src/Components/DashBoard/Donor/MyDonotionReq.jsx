@@ -4,14 +4,15 @@ import useAuth from "../../../Hooks/UseAuth";
 import { getDonorDonationReq } from "../../../Api/DonationReq";
 import Container from "../../../Shared/Container";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 const MyDonotionReq = () => {
     const{user} = useAuth()
     const [Donations,setDonations] = useState([])
-    useEffect(()=>{
-        getDonorDonationReq(user?.email)
-        .then(data => setDonations(data))
+    useEffect(() =>{
+      axios.get(`http://localhost:5000/donets/${user.email}`)
+      .then(res => setDonations(res.data))
     },[user])
     return (
         <div>
@@ -19,19 +20,28 @@ const MyDonotionReq = () => {
         <title>My Listings</title>
       </Helmet>
 
-      <Container>
-      <div className="overflow-x-auto">
+    
+  {
+    Donations.length === 0 ? <p>No Donation availabe</p>
+    :
+    <>
+        <div className="overflow-x-auto">
   <table className="table table-zebra">
     {/* head */}
     <thead>
       <tr>
-        <th></th>
-        <th>Requester name</th>
+        <th>total</th>
+        <th>recipient Name</th>
         <th>location</th>
         <th>date</th>
         <th>time</th>
+        <th>Donor name</th>
+        <th>Donor email</th>
+        <th>Donation status</th>
         <th>Update</th>
         <th>Delete</th>
+    
+        
       </tr>
     </thead>
     <tbody>
@@ -39,21 +49,26 @@ const MyDonotionReq = () => {
     {
         Donations.map((donation,index) => <tr key={donation._id}>
             <th>{index + 1}</th>
-            <td>{donation.requesterName}</td>
+            <td>{donation.recipientName}</td>
             <td>{donation.recipientLocation}</td>
-            <td>{donation.donationDate}</td>
+            <td>{donation.date}</td>
             <td>{donation.donationTime}</td>
+            <td>{donation.donetorName}</td>
+            <td>{donation.donetorEmail}</td>
+            <td>{donation.status}</td>
+            <td>
+              <Link to={`/donets/updated/${donation._id}`}>
+              update
+              </Link>
+            </td>
+            <td>
+            <Link>
+              delete
+              </Link>
+            </td>
+            
         
-            <td>
-                <Link to={`${donation._id}`}>
-                <button  className="btn btn-sm">Update</button>
-                </Link>
-                </td>
-            <td>
-                <Link to={`${donation._id}`}>
-                <button  className="btn btn-sm">Delete</button>
-                </Link>
-                </td>
+           
           </tr>)
     }
       
@@ -61,7 +76,10 @@ const MyDonotionReq = () => {
     </tbody>
   </table>
 </div>
-      </Container>
+    
+    </>
+  }
+  
         </div>
     );
 };

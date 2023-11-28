@@ -20,6 +20,10 @@ import PraivetRoute from "./PraivetRoutes";
 import DonorRoute from "./DonorRoute";
 import AdminRote from "./AdminRote";
 import AdminVolntiRoute from "./AdminVolntiRoute";
+import SingleStatus from "../Components/SIngleStatusUpdate/SingleStatus";
+import SingleDonationModal from "../Components/SingleDonationModal/SingleDonationModal";
+import UpdatedDonet from "../Components/UpdatedDonet/UpdatedDonet";
+import UpdatedDonetStatus from "../Components/UpdatedDonet/UpdatedDonetStatus";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +57,36 @@ const router = createBrowserRouter([
       element: <Register></Register>
     },
     {
+      path:'/user/:email',
+      element: <SingleStatus/>,
+      loader: ({params}) => fetch(`http://localhost:5000/user/${params.email}`)
+
+    },
+    {
+      path:'/donationReq/:id',
+      element: <PraivetRoute>
+        <SingleDonationModal/>
+      </PraivetRoute>,
+      loader: ({params}) => getSingleDonationReq(params.id)
+
+    },
+    {
+      path:'/donets/updated/:id',
+      element:<PraivetRoute>
+        <UpdatedDonet/>
+      </PraivetRoute>,
+      loader: ({params}) => fetch(`http://localhost:5000/donets/updated/${params.id}`)
+
+    },
+    {
+      path:'/donets/status/:id',
+      element:<PraivetRoute>
+        <UpdatedDonetStatus/>
+      </PraivetRoute>,
+      loader: ({params}) => fetch(`http://localhost:5000/donets/status/${params.id}`)
+
+    },
+    {
       path:'/dashBoard',
       element: <DashboardLayout></DashboardLayout>,
       children: [
@@ -72,6 +106,7 @@ const router = createBrowserRouter([
           </DonorRoute>
           </PraivetRoute>
       },
+     
      
       {
         path:'createDonation',

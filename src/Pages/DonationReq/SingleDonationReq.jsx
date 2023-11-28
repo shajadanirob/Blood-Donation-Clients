@@ -3,6 +3,7 @@ import { FaRegAddressCard } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlineDateRange } from "react-icons/md";
 import { CiHospital1 } from "react-icons/ci";
+import SingleDonationModal from "../../Components/SingleDonationModal/SingleDonationModal";
 
 
 const SingleDonationReq = () => {
@@ -127,7 +128,11 @@ const SingleDonationReq = () => {
 
 
         <div className="flex justify-center items-center">
-            <button className="'btn  space-x-2 rounded-lg border border-[#ef3d32] bg-[#ef3d32] px-7 py-3.5 font-semibold leading-6 text-white hover:border-[#ef3d32] hover:bg-[#ef3d32] hover:text-white focus:ring focus:ring-[#ef3d32] focus:ring-opacity-50 active:border-[#ef3d32]active:bg-blue-700 dark:focus:ring-[#ef3d32]dark:focus:ring-opacity-90">Donet</button>
+            <button className="">
+                {/* Open the modal using document.getElementById('ID').showModal() method */}
+<button className="btn  space-x-2 rounded-lg border border-[#ef3d32] bg-[#ef3d32] px-7 py-3.5 font-semibold leading-6 text-white hover:border-[#ef3d32] hover:bg-[#ef3d32] hover:text-white focus:ring focus:ring-[#ef3d32] focus:ring-opacity-50 active:border-[#ef3d32]active:bg-blue-700 dark:focus:ring-[#ef3d32]dark:focus:ring-opacity-90" onClick={()=>document.getElementById('my_modal_1').showModal()}>Donet</button>
+<SingleDonationModal/>
+            </button>
         </div> 
         
     </section>
