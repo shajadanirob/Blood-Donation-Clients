@@ -29,6 +29,7 @@ import BLogDetails from "../Pages/Blogs/BLogDetails";
 import DonationMyRequest from "../Components/DashBoard/Donor/DonationMyRequest";
 import AllBlog from "../Components/DashBoard/Admin/AllBlog";
 import UpdateBlogs from "../Pages/Blogs/UpdateBlogs";
+import SearchDonation from "../Pages/SearchDonation";
 
 const router = createBrowserRouter([
     {
@@ -60,6 +61,12 @@ const router = createBrowserRouter([
           path:'/blogs/:id',
           element: <BLogDetails/>,
           loader:({params}) => fetch(`http://localhost:5000/blogs/${params.id}`)
+        },
+        {
+          path:'/search',
+          element: <SearchDonation/>,
+          
+
         }
       ]
     },
