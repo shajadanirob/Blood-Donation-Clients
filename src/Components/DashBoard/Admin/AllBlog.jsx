@@ -64,12 +64,12 @@ const AllBlog = () => {
             <td>{blog.description.slice(0,100)}</td>
            
             <td>
-              <Link to={`/blogs/updated/${blog._id}`}>
+              <Link className=" text-[#ea062b]" to={`/blogs/updated/${blog._id}`}>
               update
               </Link>
             </td>
             <td>
-            <button onClick={() =>handleDelete(blog._id)} className="btn">
+            <button onClick={() =>handleDelete(blog._id)} className="btn bg-[#ea062b] text-white">
               delete
               </button>
             </td>

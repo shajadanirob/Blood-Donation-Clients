@@ -57,12 +57,12 @@ const MyDonotionReq = () => {
             <td>{donation.donetorEmail}</td>
             <td>{donation.status}</td>
             <td>
-              <Link to={`/donets/updated/${donation._id}`}>
+              <Link className="text-[#ea062b]" to={`/donets/updated/${donation._id}`}>
               update
               </Link>
             </td>
             <td>
-            <Link>
+            <Link className="text-[#ea062b]">
               delete
               </Link>
             </td>

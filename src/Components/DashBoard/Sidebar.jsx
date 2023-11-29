@@ -57,7 +57,7 @@ const Sidebar = () => {
       >
         <div>
           <div>
-            <Link to='/' className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
+            <Link to='/' className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center mx-auto'>
             <img className="w-[20%] md:w-[25%]" src="https://i.ibb.co/2KbSFkF/download-removebg-preview.png" alt="Website Logo" />
             </Link>
           </div>
@@ -93,11 +93,12 @@ const Sidebar = () => {
           <hr />
 
        
-          <button className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-7Volunteer00 transition-colors duration-300 transform'>
+         <Link to='/'>
+         <button className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-7Volunteer00 transition-colors duration-300 transform'>
             <GrLogout className='w-5 h-5' />
 
-            <span className='mx-4 font-medium'>Logout</span>
-          </button>
+            <span className='mx-4 font-medium'>Home</span>
+          </button></Link>
         </div>
       </div>
     </>

@@ -89,7 +89,7 @@ const Navbar = () => {
                     <img src={user.photoURL} alt={user.displayName} />
                 </div>
             </label>
-            <button className="inline-flex items-center justify-center rounded-xl bg-[#5C98F2] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#5C98F2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            <button className="inline-flex items-center justify-center rounded-xl bg-[#ea062b] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#ea062b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                         onClick={logOut}
                     >Logout</button>
             </div>

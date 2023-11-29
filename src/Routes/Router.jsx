@@ -30,6 +30,7 @@ import DonationMyRequest from "../Components/DashBoard/Donor/DonationMyRequest";
 import AllBlog from "../Components/DashBoard/Admin/AllBlog";
 import UpdateBlogs from "../Pages/Blogs/UpdateBlogs";
 import SearchDonation from "../Pages/SearchDonation";
+import SingleDonationReqUp from "../Components/DashBoard/Donor/SingleDonationReqUp";
 
 const router = createBrowserRouter([
     {
@@ -118,6 +119,16 @@ const router = createBrowserRouter([
 
     },
     {
+      path:'/donationReqe/updated/:id',
+      element:
+        <PraivetRoute>
+          <DonorRoute>
+          <SingleDonationReqUp/>
+        </DonorRoute>
+        </PraivetRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/donationReqe/updated/${params.id}`)
+    },
+    {
       path:'/dashBoard',
       element: <DashboardLayout></DashboardLayout>,
       children: [
@@ -137,6 +148,7 @@ const router = createBrowserRouter([
           </DonorRoute>
           </PraivetRoute>
       },
+      
       {
         path:'donationReq',
         element:

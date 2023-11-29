@@ -43,7 +43,7 @@ const SearchDonation = () => {
 
   return (
     <div className="my-32">
-      <div className="flex justify-center items-center space-x-4 p-4">
+      <div className="lg:flex  justify-center items-center space-x-4 p-4">
         {/* Search Input */}
         <input
           type="text"
@@ -92,9 +92,9 @@ const SearchDonation = () => {
         </select>
 
         {/* Search Button */}
-        <button className="bg-blue-500 text-white p-2 rounded" onClick={() => handleSearch({})}>
+        {/* <button className="bg-[#ea062b] text-white p-2 rounded" onClick={() => handleSearch({})}>
           Search
-        </button>
+        </button> */}
       </div>
 
       <Container>

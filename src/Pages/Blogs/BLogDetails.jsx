@@ -8,7 +8,7 @@ const BLogDetails = () => {
     <div class="max-w-3xl mx-auto">
       
         <div class="py-8">
-            <h1 class="text-3xl font-bold mb-2">{loader.blogsName}</h1>
+            <h1 class="text-3xl  font-bold mb-2">{loader.blogsName}</h1>
         </div>
 
        

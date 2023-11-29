@@ -38,7 +38,7 @@ const DonationReq = () => {
             <td>{donation.donationTime}</td>
             <td>
                 <Link to={`${donation._id}`}>
-                <button  className="btn btn-sm">view details</button>
+                <button  className="btn btn-sm text-white bg-[#ef3d32]">view details</button>
                 </Link>
                 </td>
           </tr>)

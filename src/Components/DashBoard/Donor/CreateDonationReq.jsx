@@ -59,7 +59,7 @@ const CreateDonationReq = () => {
         <div className="flex justify-center items-center">
            
         </div>
-        <h3 className="text-3l text-[#5c98f2] text-center font-bold">
+        <h3 className="text-3l text-[#ea062b] text-center font-bold">
             Add Donation Request
         </h3>
 
@@ -151,7 +151,7 @@ const CreateDonationReq = () => {
                     </div>
                 </div>
                 <div className="p-6 border-t border-gray-200 rounded-b flex items-center justify-center">
-                    <button className=" inline-flex text-white bg-[#5c98f2] border-0  focus:outline-none hover:bg-[5c98f2] rounded-full py-2 px-6 text-lg" type="submit">Add Services</button>
+                    <button className=" inline-flex text-white bg-[#ea062b] border-0  focus:outline-none hover:bg-[5c98f2] rounded-full py-2 px-6 text-lg" type="submit">Add Services</button>
                 </div>
             </form>
         </div>

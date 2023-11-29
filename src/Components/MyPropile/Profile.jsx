@@ -15,10 +15,12 @@ const Profile = () => {
   const{user} = useAuth()
   console.log(user)
   const [Donations,setDonations] = useState([])
-  useEffect(() =>{
-    axios.get(`http://localhost:5000/donets/${user.email}`)
-    .then(res => setDonations(res.data))
-  },[user])
+    useEffect(() =>{
+        getDonorDonationReq(user.email)
+        .then(res => setDonations(res))
+      },[user])
+console.log(Donations)
+  
    const [users ,setUsers] = useState([])
    useEffect(() =>{
     axios.get(`http://localhost:5000/users/${user.email}`)
@@ -46,7 +48,7 @@ const Profile = () => {
             />
           </a>
 
-          <p className='p-2 px-4 text-xs text-white bg-pink-500 rounded-full'>
+          <p className='p-2 px-4 text-xs text-white bg-[#ef3d32] rounded-full'>
             {/* {role && role.toUpperCase()} */}
             {role}
           </p>
@@ -99,9 +101,6 @@ const Profile = () => {
         <th>location</th>
         <th>date</th>
         <th>time</th>
-        <th>Donor name</th>
-        <th>Donor email</th>
-        <th>Donation status</th>
         
       </tr>
     </thead>
@@ -112,12 +111,9 @@ const Profile = () => {
             <th>{index + 1}</th>
             <td>{donation.recipientName}</td>
             <td>{donation.recipientLocation}</td>
-            <td>{donation.date}</td>
+            <td>{donation.donationDate}</td>
             <td>{donation.donationTime}</td>
-            <td>{donation.donetorName}</td>
-            <td>{donation.donetorEmail}</td>
-            <td>{donation.status}</td>
-            
+        
            
           </tr>)
     }
@@ -130,7 +126,7 @@ const Profile = () => {
    }
 
     </Container>
-    <Link to='/dashboard/donationReq' className='flex items-center justify-center'><button className='btn'>viewALL</button></Link>
+    <Link to='/dashboard/myDonationReq' className='flex items-center justify-center'><button className='btn bg-[#ef3d32] text-white'>viewALL</button></Link>
     </div>
   )
 }

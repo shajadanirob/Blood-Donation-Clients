@@ -32,7 +32,7 @@ const SingleBlogCard = ({blog}) => {
 
     <Link
       to={`/blogs/${blog._id}`}
-      class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
+      class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-[#ea062b]"
     >
       Find out more
 
