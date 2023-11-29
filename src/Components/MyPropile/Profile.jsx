@@ -31,7 +31,7 @@ console.log(Donations)
     <div>
       <div className='flex justify-center items-center'>
       <Helmet>
-        <title>Profile</title>
+        <title>DashBoard || Profile</title>
       </Helmet>
       <div className='bg-white shadow-lg rounded-2xl w-3/5'>
         <img

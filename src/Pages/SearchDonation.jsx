@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllUser } from "../Api/Auth";
 import Container from "../Shared/Container";
+import { Helmet } from "react-helmet";
 
 const SearchDonation = () => {
   const [donations, setDonation] = useState([]);
@@ -43,6 +44,9 @@ const SearchDonation = () => {
 
   return (
     <div className="my-32">
+      <Helmet>
+         <title>Search donor</title>
+      </Helmet>
       <div className="lg:flex  justify-center items-center space-x-4 p-4">
         {/* Search Input */}
         <input

@@ -2,6 +2,7 @@ import MenuItem from "./DashBoard/MenuItem";
 import { IoIosAddCircle } from "react-icons/io";
 import { AiOutlinePullRequest } from "react-icons/ai";
 import { MdManageAccounts } from "react-icons/md";
+import { FcAcceptDatabase } from "react-icons/fc";
 
 const DonnorMenu = () => {
     return (
@@ -12,8 +13,8 @@ const DonnorMenu = () => {
                 address='myDonationReq'
               />
               <MenuItem
-                icon={AiOutlinePullRequest }
-                label='Donet my Donation Request'
+                icon={FcAcceptDatabase}
+                label='Accept my Donation Request'
                 address='donationReq'
               />
               <MenuItem

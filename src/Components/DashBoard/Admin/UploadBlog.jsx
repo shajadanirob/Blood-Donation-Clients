@@ -1,6 +1,7 @@
 import axios from "axios";
 import { imageUpload } from "../../../Api/Utilite";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const Blog =  () => {
     const handleSubmit = async event => {
@@ -24,6 +25,9 @@ const Blog =  () => {
     }
     return (
         <div>
+             <Helmet>
+            <title>Upload Blog</title>
+          </Helmet>
          <div className="bg-white border border-4 rounded-lg shadow relative w-full">
             <h3 className="text-3l text-[#ea062b] text-center font-bold">
                 Add Blogs

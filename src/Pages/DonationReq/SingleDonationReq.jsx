@@ -4,6 +4,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlineDateRange } from "react-icons/md";
 import { CiHospital1 } from "react-icons/ci";
 import SingleDonationModal from "../../Components/SingleDonationModal/SingleDonationModal";
+import { Helmet } from "react-helmet";
 
 
 const SingleDonationReq = () => {
@@ -11,6 +12,9 @@ const SingleDonationReq = () => {
     console.log(singleDonation)
     return (
         <div className="my-20 mx-auto min-h-[calc(100vh-250px)]">
+            <Helmet>
+                <title>{singleDonation.Description.slice(0,10)}</title>
+            </Helmet>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="max-w-3xl mx-auto">
         

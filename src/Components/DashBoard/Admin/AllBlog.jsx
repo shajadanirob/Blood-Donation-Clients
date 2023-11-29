@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Container from "../../../Shared/Container";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 
 const AllBlog = () => {
@@ -25,6 +26,9 @@ const AllBlog = () => {
     return (
         <div>
             <Container>
+            <Helmet>
+            <title>manage blog</title>
+          </Helmet>
 
             <div className="overflow-x-auto">
   <table className="table table-zebra">

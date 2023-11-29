@@ -5,6 +5,7 @@ import useAuth from "../../Hooks/UseAuth";
 import toast from "react-hot-toast";
 import { getToken, savedUser } from "../../Api/Auth";
 import { imageUpload } from "../../Api/Utilite";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
     const [Districts,setDistrict] = useState([]);
@@ -115,6 +116,9 @@ const Register = () => {
 
     return (
         <div>
+            <Helmet>
+         <title>Register</title>
+      </Helmet>
             
             <div className="min-h-screen text-gray-900 flex justify-center">
     <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">

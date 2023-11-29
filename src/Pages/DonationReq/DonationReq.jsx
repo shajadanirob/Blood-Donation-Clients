@@ -3,6 +3,7 @@ import { getAllDonationReq } from "../../Api/DonationReq";
 import axiosSecure from "../../Api/Index";
 import Container from "../../Shared/Container";
 import { Link, useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 
 
@@ -12,6 +13,9 @@ const DonationReq = () => {
     
     return (
         <div className="my-20">
+           <Helmet>
+            <title>Donation Request</title>
+          </Helmet>
       <Container>
       <div className="overflow-x-auto">
   <table className="table table-zebra">

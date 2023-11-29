@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { getToken, savedUser } from '../../Api/Auth';
 import useAuth from '../../Hooks/UseAuth';
 import {TbFidgetSpinner} from 'react-icons/tb'
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
     const {signIn,signInWithGoogle,loading,} = useAuth()
@@ -67,6 +68,9 @@ const Login = () => {
 
     return (
         <Container>
+            <Helmet>
+         <title>Login</title>
+      </Helmet>
             {/* <div className="flex justify-center">
                 <div className="h-[90%] w-full md:w-3/4 m-4">
                     <div className="text-xl cursor-pointer flex flex-col justify-center items-center mt-5 md:mt-0">

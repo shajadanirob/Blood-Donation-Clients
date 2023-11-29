@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { getAllDonationReq } from "../../../Api/DonationReq";
 import { Link } from "react-router-dom";
 import Container from "../../../Shared/Container";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 
 const AllDonation = () => {
@@ -10,8 +13,22 @@ const AllDonation = () => {
         getAllDonationReq()
         .then(data => setDonations(data))
     },[])
+
+    const handleDelete = id => {
+      console.log(id)
+      axios.delete(`http://localhost:5000/donationReqe/updated/${id}`)
+      .then(res => {
+          console.log(res.data)
+          toast.success('Donation delete succussFully')
+      })
+     
+    }
+    
     return (
         <div>
+           <Helmet>
+            <title>All donation request</title>
+          </Helmet>
           <Container>
           <div className="overflow-x-auto">
   <table className="table table-zebra">
@@ -23,8 +40,7 @@ const AllDonation = () => {
         <th>location</th>
         <th>date</th>
         <th>time</th>
-        <th>status</th>
-        <th>action</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -37,14 +53,11 @@ const AllDonation = () => {
             <td>{donation.donationDate}</td>
             <td>{donation.donationTime}</td>
         
-             <td>
-                Pending
+    
+
+                <td>
+                  <button onClick={()=> handleDelete(donation._id)}>Delete</button>
                 </td>
-            <td>
-                <Link to={`${donation._id}`}>
-                <button  className="btn btn-sm">Update</button>
-                </Link>
-                </td> 
           </tr>)
     }
       

@@ -4,6 +4,7 @@ import { FaUsers } from "react-icons/fa";
 import { BiGridHorizontal } from "react-icons/bi";
 import { BsGraphUp } from 'react-icons/bs'
 import { FaBlogger } from "react-icons/fa6";
+import { MdManageSearch } from "react-icons/md";
 const AdminMenu = () => {
     return (
         <div>
@@ -28,7 +29,7 @@ const AdminMenu = () => {
                 address='addBlog'
               />
                <MenuItem
-                icon={FaBlogger   }
+                icon={MdManageSearch   }
                 label='manage Blog'
                 address='allBlog'
               />
