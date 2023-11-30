@@ -32,6 +32,8 @@ import UpdateBlogs from "../Pages/Blogs/UpdateBlogs";
 import SearchDonation from "../Pages/SearchDonation";
 import SingleDonationReqUp from "../Components/DashBoard/Donor/SingleDonationReqUp";
 
+import Payment from "../Pages/Paymet/StripeFrom";
+
 const router = createBrowserRouter([
     {
       path: "/",
@@ -68,6 +70,9 @@ const router = createBrowserRouter([
           element: <SearchDonation/>,
           
 
+        },{
+          path:'/stripe',
+          element: <Payment/>
         }
       ]
     },

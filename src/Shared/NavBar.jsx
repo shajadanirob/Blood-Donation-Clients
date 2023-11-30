@@ -92,13 +92,18 @@ const Navbar = () => {
             <button className="inline-flex items-center justify-center rounded-xl bg-[#ea062b] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#ea062b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                         onClick={logOut}
                     >Logout</button>
+
+<Link to='/stripe' className="inline-flex items-center justify-center rounded-xl bg-[#ea062b] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#ea062b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" >Donet now</Link>
+
+
             </div>
             :   <>
             <Link to='/login' className="inline-flex items-center justify-center rounded-xl bg-[#ea062b] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#ea062b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" href="/login">Login</Link>
+          
             </>
             
           } 
-           
+          
            
 
           </div>
@@ -142,7 +147,8 @@ const Navbar = () => {
 
 
 {
-            user?<div className="dropdown dropdown-end flex justify-center items-center">
+            user?<>
+             <div className="dropdown dropdown-end flex justify-center items-center">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                     <img src={user.photoURL} alt={user.displayName} />
@@ -151,9 +157,22 @@ const Navbar = () => {
             <button className="inline-flex items-center justify-center rounded-xl bg-[#5C98F2] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#5C98F2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
                         onClick={logOut}
                     >Logout</button>
+
+
+<Link to='/stripe' className="inline-flex items-center justify-center rounded-xl bg-[#ea062b] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#ea062b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" >Donet now</Link>
+            
             </div>
+             
+            
+            
+            </>
+
+
             :  
-            <> <Link to='/login' className="inline-flex items-center justify-center rounded-xl bg-[#ea062b] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#ea062b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" href="/login">Login</Link></>
+            <> <Link to='/login' className="inline-flex items-center justify-center rounded-xl bg-[#ea062b] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-[#ea062b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" href="/login">Login</Link>
+            
+            
+            </>
           } 
           
         {/* Login button remains outside the animated.div */}
