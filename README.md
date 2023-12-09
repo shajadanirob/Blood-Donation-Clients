@@ -1,6 +1,6 @@
 # Blood-Donation
 
-This is toure services website
+ Empowering lives through a dedicated blood donation website. Connect donors with recipients seamlessly, ensuring a robust and efficient platform for life-saving contributions. Join us in making a difference—one donation at a time.
 feature of this website:
 
 - this website is a Blood donation request related website
