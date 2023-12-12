@@ -33,6 +33,11 @@ const AdminMenu = () => {
                 label='manage Blog'
                 address='allBlog'
               />
+               <MenuItem
+                icon={MdManageSearch   }
+                label='Upload Campaging'
+                address='campaging'
+              />
         </div>
     );
 };

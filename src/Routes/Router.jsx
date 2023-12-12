@@ -34,6 +34,9 @@ import SingleDonationReqUp from "../Components/DashBoard/Donor/SingleDonationReq
 
 import Payment from "../Pages/Paymet/StripeFrom";
 import Error from "../Components/ErrorPage/Error";
+import Campaging from "../Pages/OurCampaging/Campaging";
+import CreateCampaging from "../Pages/OurCampaging/CreateCampaging";
+import CampagingDetail from "../Pages/OurCampaging/CampagingDetail";
 
 const router = createBrowserRouter([
     {
@@ -76,6 +79,16 @@ const router = createBrowserRouter([
           path:'/stripe',
           element: <Payment/>
         }
+        ,{
+          path:'/campaging',
+          element: <Campaging/>
+        }
+        ,
+        {
+          path:'/campaigns/:id',
+          element: <CampagingDetail/>,
+          loader:({params}) => fetch(`http://localhost:5000/campaigns/${params.id}`)
+        },
       ]
     },
     {
@@ -233,6 +246,17 @@ const router = createBrowserRouter([
            <PraivetRoute>
             <AdminVolntiRoute>
           <AllBlog/>
+          </AdminVolntiRoute>
+           </PraivetRoute>
+      
+
+      },
+      {
+        path:'campaging',
+        element:
+           <PraivetRoute>
+            <AdminVolntiRoute>
+          <CreateCampaging/>
           </AdminVolntiRoute>
            </PraivetRoute>
       
