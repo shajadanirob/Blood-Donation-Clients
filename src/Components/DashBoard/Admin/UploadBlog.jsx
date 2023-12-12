@@ -17,7 +17,7 @@ const Blog =  () => {
             blogsName,imageData,description
         }
         console.log(AllData)
-        axios.post('http://localhost:5000/blogs',AllData)
+        axios.post('https://blood-donation-server-gules.vercel.app/blogs',AllData)
         .then(res =>{
             console.log(res.data)
             toast.success('you blog upload')

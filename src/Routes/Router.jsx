@@ -33,11 +33,13 @@ import SearchDonation from "../Pages/SearchDonation";
 import SingleDonationReqUp from "../Components/DashBoard/Donor/SingleDonationReqUp";
 
 import Payment from "../Pages/Paymet/StripeFrom";
+import Error from "../Components/ErrorPage/Error";
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <Error/>,
       children:[
         {
             path:'/',
@@ -63,7 +65,7 @@ const router = createBrowserRouter([
         {
           path:'/blogs/:id',
           element: <BLogDetails/>,
-          loader:({params}) => fetch(`http://localhost:5000/blogs/${params.id}`)
+          loader:({params}) => fetch(`https://blood-donation-server-gules.vercel.app/blogs/${params.id}`)
         },
         {
           path:'/search',
@@ -78,19 +80,23 @@ const router = createBrowserRouter([
     },
     {
       path:'/login',
+      errorElement: <Error/>,
       element:<Login></Login>
     },{
       path:'/register',
+      errorElement: <Error/>,
       element: <Register></Register>
     },
     {
       path:'/user/:email',
+      errorElement: <Error/>,
       element: <SingleStatus/>,
-      loader: ({params}) => fetch(`http://localhost:5000/user/${params.email}`)
+      loader: ({params}) => fetch(`https://blood-donation-server-gules.vercel.app/user/${params.email}`)
 
     },
     {
       path:'/donationReqe/:id',
+      errorElement: <Error/>,
       element: <PraivetRoute>
         <SingleDonationModal/>
       </PraivetRoute>,
@@ -102,7 +108,7 @@ const router = createBrowserRouter([
       element:<PraivetRoute>
         <UpdatedDonet/>
       </PraivetRoute>,
-      loader: ({params}) => fetch(`http://localhost:5000/donets/updated/${params.id}`)
+      loader: ({params}) => fetch(`https://blood-donation-server-gules.vercel.app/donets/updated/${params.id}`)
 
     },
     {
@@ -110,7 +116,7 @@ const router = createBrowserRouter([
       element:<PraivetRoute>
         <UpdatedDonetStatus/>
       </PraivetRoute>,
-      loader: ({params}) => fetch(`http://localhost:5000/donets/status/${params.id}`)
+      loader: ({params}) => fetch(`https://blood-donation-server-gules.vercel.app/donets/status/${params.id}`)
 
     },
     {
@@ -120,7 +126,7 @@ const router = createBrowserRouter([
        <UpdateBlogs/>
        </AdminRote>
       </PraivetRoute>,
-      loader: ({params}) => fetch(`http://localhost:5000/blogs/updated/${params.id}`)
+      loader: ({params}) => fetch(`https://blood-donation-server-gules.vercel.app/blogs/updated/${params.id}`)
 
     },
     {
@@ -131,10 +137,11 @@ const router = createBrowserRouter([
           <SingleDonationReqUp/>
         </DonorRoute>
         </PraivetRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/donationReqe/updated/${params.id}`)
+        loader: ({params}) => fetch(`https://blood-donation-server-gules.vercel.app/donationReqe/updated/${params.id}`)
     },
     {
       path:'/dashBoard',
+      errorElement: <Error/>,
       element: <DashboardLayout></DashboardLayout>,
       children: [
         {

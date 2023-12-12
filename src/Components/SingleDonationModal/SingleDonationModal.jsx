@@ -29,7 +29,7 @@ const SingleDonationModal = () => {
             donetorEmail,donetorName,date,status,requsterName,requesterEmail,recipientName,recipientLocation,donationTime
         }
         console.log(donets)
-       axios.post('http://localhost:5000/donets',donets)
+       axios.post('https://blood-donation-server-gules.vercel.app/donets',donets)
        .then(res =>{
         console.log(res.data)
         toast.success('your donetion success')

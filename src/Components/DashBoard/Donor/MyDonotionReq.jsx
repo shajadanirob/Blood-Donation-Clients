@@ -10,7 +10,7 @@ const MyDonotionReq = () => {
     const{user} = useAuth()
     const [Donations,setDonations] = useState([])
     useEffect(() =>{
-      axios.get(`http://localhost:5000/donets/${user.email}`)
+      axios.get(`https://blood-donation-server-gules.vercel.app/donets/${user.email}`)
       .then(res => setDonations(res.data))
     },[user])
 

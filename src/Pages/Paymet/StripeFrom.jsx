@@ -59,7 +59,7 @@ const StripeForm = ({ handlePayment }) => {
           transaction : paymentIntent.id,
         
         }
-      const res = await axios.post('http://localhost:5000/payments',payment)
+      const res = await axios.post('https://blood-donation-server-gules.vercel.app/payments',payment)
       console.log('payment saved',res.data)
 
 

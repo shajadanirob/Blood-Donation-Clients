@@ -1,8 +1,25 @@
+import toast from "react-hot-toast";
 import Container from "../../Shared/Container";
 import Heading from "../../Shared/Heading";
-
+import { useRef } from "react";
+import emailjs from '@emailjs/browser';
 
 const ContactUs = () => {
+    const form = useRef();
+    const sendEmail = (e) => {
+        e.preventDefault();
+        console.log(form.current)
+    
+        emailjs.sendForm('service_y01hmq6', '12334455jhigiwsjgiwjrgt', form.current, 'CukQGwjBrhOZyG2TZ')
+          .then((result) => {
+              console.log(result.text);
+              toast.success('Your message send successFully')
+              
+          }, (error) => {
+              console.log(error.text);
+          });
+      };
+
     return (
         <div>
         <Container>
@@ -43,14 +60,14 @@ const ContactUs = () => {
             </div>
         </div>
         <div>
-            <form>
+            <form ref={form} onSubmit={sendEmail}>
 
     
                 <div className="mb-5">
                     <label for="email_address" className="sr-only">Email Address</label>
                     <input id="email_address" type="email" placeholder="Email Address" autocomplete="false"
                         className="w-full px-4 py-3 border-2 placeholder:text-neutral-800 dark:text-white rounded-md outline-none dark:placeholder:text-neutral-200 dark:bg-neutral-900   focus:ring-4  border-neutral-300 focus:border-[#ea062b] ring-neutral-100 dark:border-neutral-600 dark:focus:border-white dark:ring-0"
-                        name="email"/>
+                        name="from_name"/>
                 </div>
                 <div className="mb-3">
                     <textarea placeholder="Your Message"

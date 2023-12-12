@@ -23,7 +23,7 @@ console.log(Donations)
   
    const [users ,setUsers] = useState([])
    useEffect(() =>{
-    axios.get(`http://localhost:5000/users/${user.email}`)
+    axios.get(`https://blood-donation-server-gules.vercel.app/users/${user.email}`)
     .then(res => setUsers(res.data))
    },[user])
   console.log(user)

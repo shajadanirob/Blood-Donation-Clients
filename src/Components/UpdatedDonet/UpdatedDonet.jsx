@@ -23,7 +23,7 @@ const UpdatedDonet = () => {
           date,requsterName,requesterEmail,recipientName,recipientLocation,donationTime,status
         }
         console.log(Updateddonets)
-       axios.put(`http://localhost:5000/donets/updated/${loader._id}`,Updateddonets)
+       axios.put(`https://blood-donation-server-gules.vercel.app/donets/updated/${loader._id}`,Updateddonets)
        .then(res =>{
         console.log(res.data)
         toast.success('your donetion updated success')

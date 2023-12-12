@@ -19,7 +19,7 @@ const SingleDonationReqUp = () => {
           date,requesterName,requesterEmail,recipientName,recipientLocation,donationTime
         }
         console.log(UpdatedDonation)
-       axios.put(`http://localhost:5000/donationReqe/updated/${loader._id}`,UpdatedDonation)
+       axios.put(`https://blood-donation-server-gules.vercel.app/donationReqe/updated/${loader._id}`,UpdatedDonation)
        .then(res =>{
         console.log(res.data)
         toast.success('your donetion request updated success')

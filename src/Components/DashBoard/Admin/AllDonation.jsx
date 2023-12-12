@@ -16,7 +16,7 @@ const AllDonation = () => {
 
     const handleDelete = id => {
       console.log(id)
-      axios.delete(`http://localhost:5000/donationReqe/updated/${id}`)
+      axios.delete(`https://blood-donation-server-gules.vercel.app/donationReqe/updated/${id}`)
       .then(res => {
           console.log(res.data)
           toast.success('Donation delete succussFully')

@@ -9,13 +9,13 @@ import { Helmet } from "react-helmet";
 const AllBlog = () => {
     const [blogs,setBlogs] =useState([])
     useEffect(() =>{
-        axios.get('http://localhost:5000/blogs')
+        axios.get('https://blood-donation-server-gules.vercel.app/blogs')
         .then(res => setBlogs(res.data))
     },[])
 
     const handleDelete = id => {
         console.log(id)
-        axios.delete(`http://localhost:5000/blogs/delete/${id}`)
+        axios.delete(`https://blood-donation-server-gules.vercel.app/blogs/delete/${id}`)
         .then(res => {
             console.log(res.data)
             toast.success('your blog delete succussFully')

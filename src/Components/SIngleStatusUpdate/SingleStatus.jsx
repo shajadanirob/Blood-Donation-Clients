@@ -11,7 +11,7 @@ const SingleStatus = () => {
        const form = event.target;
        const status = form.status.value;
        const updateStatus ={statusbar}
-       axios.put(`http://localhost:5000/user/updated/${user.email}`,updateStatus)
+       axios.put(`https://blood-donation-server-gules.vercel.app/user/updated/${user.email}`,updateStatus)
        .then(res =>{
         console.log(res.data)
         

@@ -16,7 +16,7 @@ const UpdatedDonetStatus = () => {
         // }
         // http://localhost:5173/donets/status/6564c70ae735641b5c14d87d
         console.log(status)
-       axios.put(`http://localhost:5000/donets/status/${loader._id}`,status)
+       axios.put(`https://blood-donation-server-gules.vercel.app/donets/status/${loader._id}`,status)
        .then(res =>{
         console.log(res.data)
         toast.success('your status updated success')

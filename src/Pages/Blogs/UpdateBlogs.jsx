@@ -15,7 +15,7 @@ const UpdateBlogs = () => {
           blogsName,description
         }
         console.log(UpdatedBlogs)
-       axios.put(`http://localhost:5000/blogs/updated/${loader._id}`,UpdatedBlogs)
+       axios.put(`https://blood-donation-server-gules.vercel.app/blogs/updated/${loader._id}`,UpdatedBlogs)
        .then(res =>{
         console.log(res.data)
         toast.success('your blogs updated success')

@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet";
 const HomeBlogs = () => {
     const [blogs ,setBlogs] = useState([])
     useEffect(() =>{
-        axios.get('http://localhost:5000/blogs')
+        axios.get('https://blood-donation-server-gules.vercel.app/blogs')
         .then(res => setBlogs(res.data))
     },[])
     console.log(blogs)

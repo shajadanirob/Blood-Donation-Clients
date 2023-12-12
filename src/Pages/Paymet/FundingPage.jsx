@@ -5,7 +5,7 @@ const FundingPage = () => {
   const handlePayment = async (token) => {
     // Send the token to your server for payment processing
     try {
-      const response = await fetch('http://localhost:5000/payment', {
+      const response = await fetch('https://blood-donation-server-gules.vercel.app/payment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
